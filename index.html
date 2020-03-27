@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>数あてゲーム</title>
+    </head>
+    <body>
+        <input type="text" id="input" />
+        <input type="submit" id="btn" />
+        <p id="message"></p>
+        <img id="img" />
+        <script>
+            var randomNum = Math.floor(Math.random() * 100) + 1
+            var count = 0
+            var btn = document.getElementById('btn')
+            var input = document.getElementById('input')
+            var message = document.getElementById('message')
+            var img = document.getElementById('img')
+
+            btn.addEventListener(
+                'click',
+                function() {
+                    // console.log('クリックされました！')
+                    var inputNum = parseInt(input.value)
+                    count++
+                    if (randomNum == inputNum) {
+                        //console.log('正解！')
+                        message.innerText = '正解!'
+                        if (count < 6) {
+                            img.src = './excellent.jpg'
+                        } else if (count > 9) {
+                            img.src = './nogood.png'
+                        } else {
+                            img.src = './good.png'
+                        }
+                        randomNum = Math.floor(Math.random() * 100) + 1
+                        count = 0
+                    } else if (randomNum >= inputNum) {
+                        //console.log('もっと大きいです')
+                        message.innerText = 'もっと大きいです'
+                        img.src = ''
+                    } else if (randomNum <= inputNum) {
+                        //console.log('もっと小さいです')
+                        message.innerText = 'もっと小さいです'
+                        img.src = ''
+                    }
+                },
+                false
+            )
+        </script>
+    </body>
+</html>
